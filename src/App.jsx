@@ -4,12 +4,58 @@ import Header from "./components/Header/Header.jsx";
 import Form from "./components/Form/Form.jsx";
 import MiOrg from "./components/MiOrg";
 import Equipo from "./components/Equipo";
+import Footer from "./components/Footer";
 
 function App() {
   const [mostrarFormulario, actualizarMostrar] = useState(false);
+  const [colaboradores, actualizarColaboradores] = useState([
+    {
+      equipo: "Front End",
+      foto: "https://github.com/agnivade.png",
+      nombre: "Agniva De Sarker",
+      puesto: "Instructor",
+    },
+    {
+      equipo: "Front End",
+      foto: "https://github.com/midudev.png",
+      nombre: "Miguel Angel Duran",
+      puesto: "Instructor",
+    },
+    {
+      equipo: "Front End",
+      foto: "https://github.com/steven-tey.png",
+      nombre: "Steven Tey",
+      puesto: "Instructor",
+    },
+    {
+      equipo: "Devops",
+      foto: "https://github.com/bradfitz.png",
+      nombre: "Brad Fitzpatrick",
+      puesto: "Instructor",
+    },
+    {
+      equipo: "Devops",
+      foto: "https://github.com/kelseyhightower.png",
+      nombre: "Kelsey Hightower",
+      puesto: "Instructor",
+    },
+    {
+      equipo: "Móvil",
+      foto: "https://github.com/merrymercy.png",
+      nombre: "Lianmin Zheng",
+      puesto: "Instructor",
+    },
+  ]);
 
   const cambiarMostrar = () => {
     actualizarMostrar(!mostrarFormulario);
+  };
+
+  //Registrar colaborador
+  const registrarColaborador = (colaborador) => {
+    console.log("nuevo colaborador", colaborador);
+    //Spread operator
+    actualizarColaboradores([...colaboradores, colaborador]);
   };
 
   //Ternario --> condicion ? se muestra si es true : se muestra si es false
@@ -57,11 +103,26 @@ function App() {
   return (
     <div>
       <Header />
-      {mostrarFormulario ? <Form /> : null}
+      {mostrarFormulario ? (
+        <Form
+          equipos={equipos.map((equipo) => equipo.titulo)}
+          registrarColaborador={registrarColaborador}
+        />
+      ) : null}
+
       <MiOrg cambiarMostrar={cambiarMostrar} />
       {equipos.map((equipo) => {
-        return <Equipo datos={equipo} key={equipo.titulo} />;
+        return (
+          <Equipo
+            datos={equipo}
+            key={equipo.titulo}
+            colaboradores={colaboradores.filter(
+              (colaborador) => colaborador.equipo === equipo.titulo
+            )}
+          />
+        );
       })}
+      <Footer />
     </div>
   );
 }

@@ -4,11 +4,13 @@ import CampoTexto from "../CampoTexto";
 import ListaOpciones from "../ListaOpciones";
 import Boton from "../Boton";
 
-const Form = () => {
+const Form = (props) => {
   const [nombre, actualizarNombre] = useState("");
   const [puesto, actualizarPuesto] = useState("");
   const [foto, actualizarFoto] = useState("");
   const [equipo, actualizarEquipo] = useState("");
+
+  const { registrarColaborador } = props;
 
   const manejarEnvio = (event) => {
     event.preventDefault();
@@ -19,7 +21,7 @@ const Form = () => {
       foto: foto,
       equipo: equipo,
     };
-    console.log(datosAEnviar);
+    registrarColaborador(datosAEnviar);
   };
 
   return (
@@ -47,7 +49,11 @@ const Form = () => {
           valor={foto}
           actualizarValor={actualizarFoto}
         />
-        <ListaOpciones valor={equipo} actualizarEquipo={actualizarEquipo} />
+        <ListaOpciones
+          valor={equipo}
+          actualizarEquipo={actualizarEquipo}
+          equipos={props.equipos}
+        />
         <Boton texto="Crear" />
       </form>
     </section>
