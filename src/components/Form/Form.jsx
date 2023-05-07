@@ -17,7 +17,6 @@ const Form = (props) => {
 
   const manejarEnvio = (event) => {
     event.preventDefault();
-    console.log("enviando...");
     let datosAEnviar = {
       nombre: nombre,
       puesto: puesto,

@@ -11,66 +11,77 @@ function App() {
   const [mostrarFormulario, actualizarMostrar] = useState(false);
   const [colaboradores, actualizarColaboradores] = useState([
     {
+      id: uuid(),
       equipo: "Front End",
       foto: "https://github.com/agnivade.png",
       nombre: "Agniva De Sarker",
       puesto: "Instructor",
     },
     {
+      id: uuid(),
       equipo: "Front End",
       foto: "https://github.com/midudev.png",
       nombre: "Miguel Angel Duran",
       puesto: "Instructor",
     },
     {
+      id: uuid(),
       equipo: "Front End",
       foto: "https://github.com/steven-tey.png",
       nombre: "Steven Tey",
       puesto: "Instructor",
     },
     {
+      id: uuid(),
       equipo: "Devops",
       foto: "https://github.com/bradfitz.png",
       nombre: "Brad Fitzpatrick",
       puesto: "Instructor",
     },
     {
+      id: uuid(),
       equipo: "Devops",
       foto: "https://github.com/kelseyhightower.png",
       nombre: "Kelsey Hightower",
       puesto: "Instructor",
     },
     {
+      id: uuid(),
       equipo: "Móvil",
       foto: "https://github.com/merrymercy.png",
       nombre: "Lianmin Zheng",
       puesto: "Instructor",
     },
     {
+      id: uuid(),
       equipo: "Front End",
       foto: "https://github.com/harlandlohora.png",
       nombre: "Harland Lohora",
       puesto: "Instructor",
     },
     {
+      id: uuid(),
       equipo: "Programación",
       foto: "https://github.com/genesysaluralatam.png",
       nombre: "Genesys Rondon",
       puesto: "Desarrolladora de software e instructora",
     },
     {
+      id: uuid(),
       equipo: "UX y Diseño",
       foto: "https://github.com/JeanmarieAluraLatam.png",
       nombre: "Jeanmarie Quijada",
       puesto: "Instructora en Alura Latam",
     },
     {
+      id: uuid(),
       equipo: "Programación",
       foto: "https://github.com/christianpva.png",
       nombre: "Christian Velasco",
       puesto: "Head de Alura e Instructor",
     },
     {
+      id: uuid(),
       equipo: "Innovación y Gestión",
       foto: "https://github.com/JoseDarioGonzalezCha.png",
       nombre: "Jose Gonzalez",
@@ -128,14 +139,12 @@ function App() {
 
   //Registrar colaborador
   const registrarColaborador = (colaborador) => {
-    console.log("nuevo colaborador", colaborador);
     //Spread operator
     actualizarColaboradores([...colaboradores, colaborador]);
   };
 
   //Eliminar colaborador
-  const eliminarColaborador = () => {
-    console.log("Eliminar colaborador", id);
+  const eliminarColaborador = (id) => {
     const nuevosColaboradores = colaboradores.filter(
       (colaborador) => colaborador.id !== id
     );
@@ -144,7 +153,6 @@ function App() {
 
   //Actualizar color de equipo
   const actualizarColor = (color, id) => {
-    console.log("Actualizar: ", color, id);
     const equiposActualizados = equipos.map((equipo) => {
       if (equipo.id === id) {
         equipo.colorPrimario = color;
@@ -158,12 +166,10 @@ function App() {
 
   //Crear equipo
   const crearEquipo = (nuevoEquipo) => {
-    console.log(nuevoEquipo);
     actualizarEquipos([...equipos, { ...nuevoEquipo, id: uuid() }]);
   };
 
   const like = (id) => {
-    console.log("like", id);
     const colaboradoresActualizados = colaboradores.map((colaborador) => {
       if (colaborador.id === id) {
         colaborador.fav = !colaborador.fav;
