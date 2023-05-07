@@ -14,7 +14,7 @@ const ListaOpciones = (props) => {
           Seleccionar equipo
         </option>
         {props.equipos.map((equipo, index) => (
-          <option key={equipo} value={equipo}>
+          <option key={index} value={equipo}>
             {equipo}
           </option>
         ))}
