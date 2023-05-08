@@ -1,18 +1,21 @@
 import { useState } from "react";
-import "../CampoTexto/CampoTexto.css";
+import "./Campo.css";
 
-const CampoTexto = (props) => {
+const Campo = (props) => {
   const placeholderModificador = `${props.placeholder}...`;
+
+  //Destructuración
+  const { type = "text" } = props;
 
   const manejarCambio = (e) => {
     props.actualizarValor(e.target.value);
   };
 
   return (
-    <div className="campo-texto">
+    <div className={`campo campo-${type}`}>
       <label>{props.titulo}</label>
       <input
-        type="text"
+        type={type}
         placeholder={placeholderModificador}
         required={props.required}
         value={props.value}
@@ -22,4 +25,4 @@ const CampoTexto = (props) => {
   );
 };
 
-export default CampoTexto;
+export default Campo;
